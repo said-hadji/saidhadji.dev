@@ -21,12 +21,7 @@ function App() {
     <div>
       <div id="home" className="w-full h-screen relative">
         <Grainient />
-        <div className="hidden md:block">
-          <Nav toggleNav={toggleNav} isNavVisible={isNavVisible} />
-        </div>
-        <div className="md:hidden">
-          <MobileNav toggleNav={toggleNav} isNavVisible={isNavVisible} />
-        </div>
+        <Nav toggleNav={toggleNav} isNavVisible={isNavVisible} />
         <HomeContent />
         <HomeWord />
       </div>

@@ -98,7 +98,10 @@ export default function Contact() {
   }
 
   return (
-    <div id="contact" className="w-full xl:h-screen bg-gray-100 px-2 sm:px-10 py-32 flex flex-col xl:flex-row gap-20 xl:gap-0">
+    <div
+      id="contact"
+      className="w-full xl:h-screen bg-gray-100 px-2 sm:px-10 py-32 flex flex-col xl:flex-row gap-20 xl:gap-0"
+    >
       <div className="flex-1 h-full flex flex-col justify-between gap-10 lg:gap-0">
         <h1 className="text-4xl md:text-7xl xl:text-8xl font-bold flex gap-3">
           Let's Get In{" "}
@@ -125,7 +128,14 @@ export default function Contact() {
             ></div>
           </div>
         </h1>
-        <form key={id} className="w-full md:w-150 h-50 flex flex-col justify-center">
+        <form
+          onSubmit={(e) => {
+            alert("Not available!")
+            e.defaultPrevented();
+          }}
+          key={id}
+          className="w-full md:w-150 h-50 flex flex-col justify-center"
+        >
           {current?.element}
         </form>
         <div className="flex gap-4">
@@ -159,14 +169,19 @@ export default function Contact() {
       <div className="flex-1 h-full flex xl:items-end xl:justify-end">
         <div className="flex flex-col gap-4">
           <a
-            href="#"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=saidhadji.dev@gmail.com"
+            target="_blank"
             className="text-4xl px-10 py-5 bg-gray-950 text-white flex items-center justify-between gap-15 group"
           >
             <span>Email</span>
             {ArrowRightEl()}
           </a>
 
-          <a href="#" className="text-4xl px-10 py-5 bg-gray-950 text-white flex items-center justify-between gap-15 group">
+          <a
+            href="https://wa.me/212776575068"
+            target="_blank"
+            className="text-4xl px-10 py-5 bg-gray-950 text-white flex items-center justify-between gap-15 group"
+          >
             <span>Whatssap</span>
             {ArrowRightEl()}
           </a>

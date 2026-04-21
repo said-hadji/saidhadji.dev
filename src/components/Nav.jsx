@@ -7,8 +7,12 @@ import {
   Twitter,
   Linkedin,
 } from "lucide-react";
+import { FaReddit } from "react-icons/fa";
+import MobileNav from "./MobileNav";
 
 export default function Nav({ toggleNav, isNavVisible }) {
+  const isMobile = screen.width < 768;
+
   const navItems = {
     main: [
       { id: 1, icon: <House />, char: ["H", "o", "m", "e"], href: "#home" },
@@ -36,19 +40,25 @@ export default function Nav({ toggleNav, isNavVisible }) {
         id: 1,
         icon: <Linkedin />,
         char: ["L", "i", "n", "k", "e", "d", "i", "n"],
-        href: "",
+        href: "https://www.linkedin.com/in/said-hadji-363793404/",
       },
       {
         id: 2,
         icon: <Github />,
         char: ["G", "i", "t", "h", "u", "b"],
-        href: "",
+        href: "https://github.com/said-hadji",
       },
       {
         id: 3,
         icon: <Twitter />,
         char: ["T", "w", "i", "t", "t", "e", "r"],
-        href: "",
+        href: "https://x.com/said_hadji_dev",
+      },
+      {
+        id: 4,
+        icon: <FaReddit size={25} />,
+        char: ["R", "e", "d", "d", "i", "t"],
+        href: "https://www.reddit.com/user/said_hadji/",
       },
     ],
   };
@@ -107,58 +117,66 @@ export default function Nav({ toggleNav, isNavVisible }) {
 
   return (
     <>
-      <div
-        onClick={toggleNav}
-        className={`fixed top-0 left-0 w-full h-screen z-50 ${isNavVisible ? "block" : "hidden"} ${isNavVisible ? "backdrop-blur-2xl" : ""}`}
-      ></div>
-      <div className="fixed top-0 left-0 z-100 w-full flex justify-between">
-        <div
-          style={{
-            clipPath: isNavVisible
-              ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-              : "polygon(0% 0%, 100% 0%, 60% 100%, 0% 100%)",
-          }}
-          className={`fixed top-0 left-0 w-70 ${isNavVisible ? "h-70" : "h-24"} transition-all duration-300 bg-gray-950 px-10 py-8 flex justify-center items-end`}
-        >
-          <h1 className="absolute top-0 left-0 m-10 my-9 text-xl text-white select-none">
-            SAID HADJI
-          </h1>
-
+      {!isMobile && (
+        <div>
           <div
-            className={`flex flex-col gap-6 ${isNavVisible ? "opacity-100 duration-1000" : "opacity-0"}`}
-          >
-            {renderNavItems(navItems.social)}
-          </div>
-        </div>
-
-        <div className="flex-1 h-6 p-4 bg-gray-950"></div>
-
-        <div
-          style={{
-            clipPath: isNavVisible
-              ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-              : "polygon(3% 0%, 100% 0%, 100% 100%, 42% 100%)",
-          }}
-          className={`fixed top-0 right-0 w-70 ${isNavVisible ? "h-82" : "h-24"} transition-all duration-300 bg-gray-950 px-10 py-8 flex justify-center items-end`}
-        >
-          <button
             onClick={toggleNav}
-            className="absolute top-0 right-0 mx-10 my-11 text-white flex flex-col gap-2 cursor-pointer"
-          >
+            className={`fixed top-0 left-0 w-full h-screen z-50 ${isNavVisible ? "block" : "hidden"} ${isNavVisible ? "backdrop-blur-2xl" : ""}`}
+          ></div>
+          <div className="fixed top-0 left-0 z-100 w-full flex justify-between">
             <div
-              className={`w-8 h-px bg-white ${isNavVisible ? "-rotate-45 translate-y-1.5" : "rotate-0"} duration-300`}
-            ></div>
+              style={{
+                clipPath: isNavVisible
+                  ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+                  : "polygon(0% 0%, 100% 0%, 60% 100%, 0% 100%)",
+              }}
+              className={`fixed top-0 left-0 w-70 ${isNavVisible ? "h-82" : "h-24"} transition-all duration-300 bg-gray-950 px-10 py-8 flex justify-center items-end`}
+            >
+              <h1 className="absolute top-0 left-0 m-10 my-9 text-xl text-white select-none">
+                SAID HADJI
+              </h1>
+
+              <div
+                className={`flex flex-col gap-6 ${isNavVisible ? "opacity-100 duration-1000" : "opacity-0"}`}
+              >
+                {renderNavItems(navItems.social)}
+              </div>
+            </div>
+
+            <div className="flex-1 h-6 p-4 bg-gray-950"></div>
+
             <div
-              className={`w-8 h-px bg-white ${isNavVisible ? "rotate-45 -translate-y-0.5" : "rotate-0"} duration-300`}
-            ></div>
-          </button>
-          <div
-            className={`flex flex-col gap-6 ${isNavVisible ? "opacity-100 duration-1000" : "opacity-0"}`}
-          >
-            {renderNavItems(navItems.main)}
+              style={{
+                clipPath: isNavVisible
+                  ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+                  : "polygon(3% 0%, 100% 0%, 100% 100%, 42% 100%)",
+              }}
+              className={`fixed top-0 right-0 w-70 ${isNavVisible ? "h-82" : "h-24"} transition-all duration-300 bg-gray-950 px-10 py-8 flex justify-center items-end`}
+            >
+              <button
+                onClick={toggleNav}
+                className="absolute top-0 right-0 mx-10 my-11 text-white flex flex-col gap-2 cursor-pointer"
+              >
+                <div
+                  className={`w-8 h-px bg-white ${isNavVisible ? "-rotate-45 translate-y-1.5" : "rotate-0"} duration-300`}
+                ></div>
+                <div
+                  className={`w-8 h-px bg-white ${isNavVisible ? "rotate-45 -translate-y-0.5" : "rotate-0"} duration-300`}
+                ></div>
+              </button>
+              <div
+                className={`flex flex-col gap-6 ${isNavVisible ? "opacity-100 duration-1000" : "opacity-0"}`}
+              >
+                {renderNavItems(navItems.main)}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {isMobile && (
+        <MobileNav toggleNav={toggleNav} isNavVisible={isNavVisible} />
+      )}
     </>
   );
 }
