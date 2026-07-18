@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  @apply bg-ink-950 text-mist-100 antialiased;
+  font-feature-settings: 'ss01' 1, 'cv11' 1;
+}
+
+::selection {
+  background: rgba(124, 92, 252, 0.35);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #06060a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f2c;
+  border-radius: 999px;
+  border: 2px solid #06060a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b2b3b;
+}
+
+/* Consistent, visible focus styling for keyboard users */
+:focus-visible {
+  outline: 2px solid #9b86ff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #7c5cfc;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
