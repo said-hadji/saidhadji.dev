@@ -19,6 +19,15 @@ export function Navbar({ setIsStartProject }) {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const handleStartProject = () => {
+    if (activeId !== "contact") {
+      setIsStartProject(true);
+      setOpen(false);
+    } else {
+      scrollToSection("contact");
+    }
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -85,13 +94,7 @@ export function Navbar({ setIsStartProject }) {
           <Button
             variant="secondary"
             className="py-2.5 text-sm"
-            onClick={() => {
-              if (activeId !== "contact") {
-                setIsStartProject(true);
-              } else {
-                scrollToSection("contact")
-              }
-            }}
+            onClick={handleStartProject}
           >
             Start a Project
           </Button>
@@ -136,7 +139,7 @@ export function Navbar({ setIsStartProject }) {
               <Button
                 variant="primary"
                 className="mt-2 justify-center"
-                onClick={() => scrollToSection("contact")}
+                onClick={handleStartProject}
               >
                 Start a Project
               </Button>

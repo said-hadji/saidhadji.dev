@@ -118,7 +118,18 @@ export const PROJECTS = [
       "A premium coffee shop landing page built with React and Tailwind CSS, featuring reusable components, responsive layouts, interactive menu filtering, and modern UI/UX design.",
     gradient: "from-yellow-100/20 via-stone-800 to-neutral-950",
     demo: "https://brewhaus-iota.vercel.app/",
-    github: "https://github.com/said-hadji/Brewhaus"
+    github: "https://github.com/said-hadji/Brewhaus",
+  },
+  {
+    title: "IronForge",
+    subtitle: "Premium Gym Landing Page",
+    tag: "Frontend",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    description:
+      "A modern, responsive gym landing page built with React and Tailwind CSS. Features smooth animations with Framer Motion, an interactive BMI calculator with healthy BMI ranges, reusable components, and a clean premium UI focused on performance and user experience.",
+    gradient: "from-orange-500/30 via-zinc-900 to-black",
+    demo: "https://ironforge-gym-rose.vercel.app/",
+    github: "https://github.com/said-hadji/ironforge-gym",
   },
 ];
 

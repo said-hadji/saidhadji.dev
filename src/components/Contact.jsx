@@ -4,8 +4,7 @@ import { Container } from "./ui/Container";
 import { SectionHeading } from "./ui/SectionHeading";
 import { GlassCard } from "./ui/GlassCard";
 import { Button } from "./ui/Button";
-import { NAV_ITEMS, SOCIALS } from "../data";
-import { useActiveSection } from "../hooks/useActiveSection";
+import { SOCIALS } from "../data";
 
 const INFO = [
   {
@@ -139,10 +138,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
             </div>
           </div>
 
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="lg:col-span-3"
-          >
+          <div onClick={(e) => e.stopPropagation()} className="lg:col-span-3">
             <GlassCard className="p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

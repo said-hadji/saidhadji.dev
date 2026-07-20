@@ -65,10 +65,10 @@ export function ProjectCard({ project }) {
         </div>
 
         <div className="flex flex-col p-6 sm:p-8">
-          <p className="text-base font-medium text-mist-300">
+          <p className="text-base font-medium text-mist-100">
             {project.subtitle}
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-mist-500 sm:text-base">
+          <p className="mt-3 text-sm leading-relaxed text-mist-400 sm:text-base">
             {project.description}
           </p>
 

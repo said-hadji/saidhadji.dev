@@ -1,8 +1,8 @@
-import { Container } from './ui/Container'
-import { SectionHeading } from './ui/SectionHeading'
-import { ProjectCard } from './ProjectCard'
-import { ProjectComingSoon } from './ProjectComingSoon'
-import { PROJECTS } from '../data'
+import { Container } from "./ui/Container";
+import { SectionHeading } from "./ui/SectionHeading";
+import { ProjectCard } from "./ProjectCard";
+import { ProjectComingSoon } from "./ProjectComingSoon";
+import { PROJECTS } from "../data";
 
 export function Projects() {
   return (
@@ -14,17 +14,14 @@ export function Projects() {
           subtitle="I'd rather show you one thing done properly than five things done halfway."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            {PROJECTS.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
-          <div className="lg:col-span-1">
-            <ProjectComingSoon />
-          </div>
+        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+
+          <ProjectComingSoon />
         </div>
       </Container>
     </section>
-  )
+  );
 }
