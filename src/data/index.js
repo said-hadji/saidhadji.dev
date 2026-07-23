@@ -19,6 +19,9 @@ import {
   PackageCheck,
 } from "lucide-react";
 
+import brewhaus from "../assets/screenShots/brewhausScreenshot.png"
+import ironforge from "../assets/screenShots/ironforgeScreenshot.png"
+
 // ---- Replace these with your real details ----
 export const PROFILE = {
   name: "Said Hadji",
@@ -116,7 +119,8 @@ export const PROJECTS = [
     tags: ["React", "Tailwind CSS", "JavaScript"],
     description:
       "A premium coffee shop landing page built with React and Tailwind CSS, featuring reusable components, responsive layouts, interactive menu filtering, and modern UI/UX design.",
-    gradient: "from-yellow-100/20 via-stone-800 to-neutral-950",
+    gradient: "from-[#fff8f2] to-[#6f4e37]",
+    screenShot: brewhaus,
     demo: "https://brewhaus-iota.vercel.app/",
     github: "https://github.com/said-hadji/Brewhaus",
   },
@@ -127,7 +131,8 @@ export const PROJECTS = [
     tags: ["React", "Tailwind CSS", "JavaScript"],
     description:
       "A modern, responsive gym landing page built with React and Tailwind CSS. Features smooth animations with Framer Motion, an interactive BMI calculator with healthy BMI ranges, reusable components, and a clean premium UI focused on performance and user experience.",
-    gradient: "from-orange-500/30 via-zinc-900 to-black",
+    gradient: "from-[#0b0b0b] via-zinc-900 to-orange-500/30",
+    screenShot: ironforge,
     demo: "https://ironforge-gym-rose.vercel.app/",
     github: "https://github.com/said-hadji/ironforge-gym",
   },

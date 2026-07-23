@@ -71,10 +71,10 @@ export function CodeWindow({ className = '' }) {
       initial={{ opacity: 0, y: 30, rotateX: 6 }}
       animate={{ opacity: 1, y: 0, rotateX: 0 }}
       transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className={`w-full max-w-md rounded-2xl border border-white/[0.08] bg-ink-900/80 shadow-card backdrop-blur-xl ${className}`}
+      className={`w-full max-w-md rounded-2xl border border-white/8 bg-ink-900/80 shadow-card backdrop-blur-xl ${className}`}
       style={{ perspective: 1000 }}
     >
-      <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-white/6 px-4 py-3">
         <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
         <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
         <span className="h-3 w-3 rounded-full bg-[#28c840]" />
@@ -84,7 +84,7 @@ export function CodeWindow({ className = '' }) {
         {LINES.map((segments, i) => (
           <div key={i} className="flex gap-3">
             <span className="w-4 shrink-0 select-none text-right text-mist-600/70">{i + 1}</span>
-            <span className="whitespace-pre-wrap break-words">
+            <span className="whitespace-pre-wrap wrap-break-word">
               {i < visibleLines
                 ? renderLine(segments, Infinity)
                 : i === visibleLines

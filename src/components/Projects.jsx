@@ -14,10 +14,12 @@ export function Projects() {
           subtitle="I'd rather show you one thing done properly than five things done halfway."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
+        <div className="mt-14 flex flex-col gap-10">
+          <div className="flex flex-col">
+            {PROJECTS.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
 
           <ProjectComingSoon />
         </div>

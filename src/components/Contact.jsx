@@ -109,7 +109,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
               {INFO.map((i) => {
                 const content = (
                   <GlassCard className="flex items-center gap-4 p-5 transition-colors duration-300 hover:border-violet-500/30">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.03]">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/3">
                       <i className={i.icon}></i>
                     </span>
                     <span>
@@ -154,7 +154,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
                         setForm((f) => ({ ...f, name: e.target.value }))
                       }
                       placeholder="Jane Doe"
-                      className="w-full rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
+                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
                     />
                   </label>
                   <label className="block">
@@ -169,7 +169,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
                         setForm((f) => ({ ...f, email: e.target.value }))
                       }
                       placeholder="jane@company.com"
-                      className="w-full rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
+                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
                     />
                   </label>
                 </div>
@@ -182,7 +182,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
                   <div ref={selectRef} className={`relative`}>
                     <div
                       onClick={() => setIsSelect(!isSelect)}
-                      className="w-full rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-sm text-mist-100 transition-colors focus:border-violet-500/60 cursor-pointer"
+                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 transition-colors focus:border-violet-500/60 cursor-pointer"
                     >
                       <span>
                         {selectedOption
@@ -193,7 +193,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
 
                     {isSelect && (
                       <div
-                        className={`absolute top-full inset-x-0 flex flex-col w-full rounded-xl border border-white/[0.1] bg-ink-950 p-1 text-sm text-mist-100 transition-colors focus:border-violet-500/60`}
+                        className={`absolute top-full inset-x-0 flex flex-col w-full rounded-xl border border-white/10 bg-ink-950 p-1 text-sm text-mist-100 transition-colors focus:border-violet-500/60`}
                       >
                         {PROJECT_TYPES.map((type) => (
                           <span
@@ -224,7 +224,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
                       setForm((f) => ({ ...f, message: e.target.value }))
                     }
                     placeholder="Tell me a little about your project..."
-                    className="w-full resize-none rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
+                    className="w-full resize-none rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
                   />
                 </label>
 

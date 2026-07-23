@@ -30,7 +30,7 @@ export function Hero() {
       style={{ '--spot-x': '50%', '--spot-y': '30%' }}
     >
       {/* Grid + spotlight background */}
-      <div className="absolute inset-0 bg-grid-pattern bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
+      <div className="absolute inset-0 bg-grid-pattern bg-size-[56px_56px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
       <div
         className="pointer-events-none absolute inset-0 opacity-70 transition-opacity"
         style={{
@@ -49,7 +49,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-1.5 font-mono text-xs text-mist-300"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/3 px-4 py-1.5 font-mono text-xs text-mist-300"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />

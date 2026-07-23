@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 
 const base =
-  'group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3.5 text-sm font-semibold transition-colors duration-300 focus-visible:outline-none'
+  'group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-6 py-3.5 text-sm font-semibold transition-colors duration-300 focus-visible:outline-hidden cursor-pointer'
 
 const variants = {
   primary:
-    'bg-gradient-to-r from-violet-500 to-violet-600 text-white shadow-glow-violet hover:from-violet-400 hover:to-violet-500',
+    'bg-linear-to-r from-violet-500 to-violet-600 text-white shadow-glow-violet hover:from-violet-400 hover:to-violet-500',
   secondary:
-    'border border-white/[0.12] bg-white/[0.03] text-mist-100 backdrop-blur-xl hover:border-white/25 hover:bg-white/[0.07]',
+    'border border-white/12 bg-white/3 text-mist-100 backdrop-blur-xl hover:border-white/25 hover:bg-white/[0.07]',
   ghost: 'text-mist-300 hover:text-mist-100',
 }
 
@@ -24,7 +24,7 @@ export function Button({ as: As = 'button', variant = 'primary', className = '',
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+        className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
       />
       {children}
     </MotionComp>

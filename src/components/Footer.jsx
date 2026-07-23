@@ -13,7 +13,7 @@ const LINKS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] py-10">
+    <footer className="border-t border-white/6 py-10">
       <Container className="flex flex-col items-center justify-between gap-6 sm:flex-row">
         <p className="font-mono text-xs text-mist-600">
           © {new Date().getFullYear()} {PROFILE.name}. Designed &amp; built by
@@ -25,7 +25,7 @@ export function Footer() {
               key={link.label}
               href={link.href}
               aria-label={link.label}
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] text-mist-400 transition-colors hover:border-violet-500/40 hover:text-violet-300"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/8 text-mist-400 transition-colors hover:border-violet-500/40 hover:text-violet-300"
             >
               <i className={link.icon}></i>
             </a>

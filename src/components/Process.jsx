@@ -32,7 +32,7 @@ export function Process() {
           {PROCESS_STEPS.map(({ icon: Icon, title, description }, i) => (
             <motion.div key={title} variants={item} className="relative text-left">
               <div className="flex items-center justify-start gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.03]">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/3">
                   <Icon size={17} className="text-violet-300" aria-hidden="true" />
                 </span>
                 <span className="font-mono text-xs text-mist-600">0{i + 1}</span>
@@ -43,7 +43,7 @@ export function Process() {
               {i < PROCESS_STEPS.length - 1 && (
                 <span
                   aria-hidden="true"
-                  className="absolute right-[-1rem] top-5 hidden h-px w-8 bg-white/[0.1] lg:block"
+                  className="absolute -right-4 top-5 hidden h-px w-8 bg-white/10 lg:block"
                 />
               )}
             </motion.div>

@@ -216,7 +216,7 @@ export function About() {
             <h3 className="mt-14 font-mono text-xs tracking-widest text-mist-500">
               HOW I GOT HERE
             </h3>
-            <div className="relative mt-6 space-y-10 border-l border-white/[0.08] pl-8">
+            <div className="relative mt-6 space-y-10 border-l border-white/8 pl-8">
               {TIMELINE.map((entry, i) => (
                 <motion.div
                   key={entry.title}
@@ -226,7 +226,7 @@ export function About() {
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                   className="relative"
                 >
-                  <span className="absolute -left-[2.32rem] top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-ink-950 bg-violet-500 shadow-glow-violet" />
+                  <span className="absolute left-[-2.32rem] top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-ink-950 bg-violet-500 shadow-glow-violet" />
                   <span className="font-mono text-xs text-violet-300">
                     {entry.tag}
                   </span>

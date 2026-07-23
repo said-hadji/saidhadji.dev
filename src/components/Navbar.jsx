@@ -32,7 +32,7 @@ export function Navbar({ setIsStartProject }) {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-white/[0.08] bg-ink-950/70 backdrop-blur-xl"
+          ? "border-b border-white/8 bg-ink-950/70 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -45,7 +45,7 @@ export function Navbar({ setIsStartProject }) {
           }}
           className="flex items-center gap-2 font-mono text-sm font-semibold tracking-tight text-mist-100"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.03]">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/3">
             <Terminal
               size={16}
               className="text-violet-400"
@@ -57,14 +57,14 @@ export function Navbar({ setIsStartProject }) {
         </a>
 
         <nav className="hidden md:block" aria-label="Primary">
-          <ul className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.02] p-1">
+          <ul className="flex items-center gap-1 rounded-full border border-white/8 bg-white/2 p-1">
             {NAV_ITEMS.map((item) => {
               const isActive = activeId === item.id;
               return (
                 <li key={item.id} className="relative">
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`relative z-10 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                    className={`relative z-10 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 cursor-pointer ${
                       isActive
                         ? "text-ink-950"
                         : "text-mist-400 hover:text-mist-100"
@@ -76,7 +76,7 @@ export function Navbar({ setIsStartProject }) {
                   {isActive && (
                     <motion.span
                       layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-400 to-violet-300"
+                      className="absolute inset-0 rounded-full bg-linear-to-r from-violet-400 to-violet-300"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -102,7 +102,7 @@ export function Navbar({ setIsStartProject }) {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.1] text-mist-100 md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-mist-100 md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -116,7 +116,7 @@ export function Navbar({ setIsStartProject }) {
             initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
-            className="overflow-hidden border-t border-white/[0.08] bg-ink-950/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-t border-white/8 bg-ink-950/95 backdrop-blur-xl md:hidden"
             aria-label="Mobile"
           >
             <Container className="flex flex-col gap-1 py-4">
@@ -130,7 +130,7 @@ export function Navbar({ setIsStartProject }) {
                   className={`rounded-lg px-3 py-3 text-left text-base font-medium transition-colors ${
                     activeId === item.id
                       ? "bg-violet-500/10 text-violet-300"
-                      : "text-mist-300 hover:bg-white/[0.03]"
+                      : "text-mist-300 hover:bg-white/3"
                   }`}
                 >
                   {item.label}
