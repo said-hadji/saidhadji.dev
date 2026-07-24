@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 import { GlassCard } from "./ui/GlassCard";
-import { Button } from "./ui/Button";
+import { useIsDesktop } from "../hooks/useIsDesktop";
+import { useCursorFollow } from "../hooks/useCursorFollow";
 
 const PREVIEW_WIDTH = 500;
 const PREVIEW_HEIGHT = 280;
@@ -11,85 +10,16 @@ const CURSOR_OFFSET = 10;
 const EDGE_PADDING = 12;
 const LERP_SPEED = 0.35;
 
-const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-
 export function ProjectCard({ project }) {
-  const [isHovering, setIsHovering] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  const wrapperRef = useRef(null); // tracks cursor position (translate only)
-
-  const target = useRef({ x: 0, y: 0 });
-  const current = useRef({ x: 0, y: 0 });
-  const hasPositioned = useRef(false);
-
-  const animationFrame = useRef();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const animate = () => {
-      current.current.x += (target.current.x - current.current.x) * LERP_SPEED;
-      current.current.y += (target.current.y - current.current.y) * LERP_SPEED;
-
-      if (wrapperRef.current) {
-        // Position only — no transition here, it must track the cursor instantly.
-        wrapperRef.current.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
-      }
-
-      animationFrame.current = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => cancelAnimationFrame(animationFrame.current);
-  }, []);
-
-  const getClampedPosition = (clientX, clientY) => {
-    let x = clientX + CURSOR_OFFSET;
-    let y = clientY + CURSOR_OFFSET;
-
-    if (x + PREVIEW_WIDTH > window.innerWidth - EDGE_PADDING) {
-      x = clientX - PREVIEW_WIDTH - CURSOR_OFFSET;
-    }
-    if (y + PREVIEW_HEIGHT > window.innerHeight - EDGE_PADDING) {
-      y = clientY - PREVIEW_HEIGHT - CURSOR_OFFSET;
-    }
-
-    x = clamp(
-      x,
-      EDGE_PADDING,
-      window.innerWidth - PREVIEW_WIDTH - EDGE_PADDING,
-    );
-    y = clamp(
-      y,
-      EDGE_PADDING,
-      window.innerHeight - PREVIEW_HEIGHT - EDGE_PADDING,
-    );
-
-    return { x, y };
-  };
-
-  const handleMouseMove = (e) => {
-    setIsHovering(true);
-
-    const { x, y } = getClampedPosition(e.clientX, e.clientY);
-    target.current.x = x;
-    target.current.y = y;
-
-    if (!hasPositioned.current) {
-      current.current.x = x;
-      current.current.y = y;
-      hasPositioned.current = true;
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    hasPositioned.current = false;
-  };
+  const isDesktop = useIsDesktop();
+  const cursorFollow = useCursorFollow({
+    PREVIEW_WIDTH,
+    PREVIEW_HEIGHT,
+    CURSOR_OFFSET,
+    EDGE_PADDING,
+    LERP_SPEED,
+  });
+  const { wrapperRef, isHovering, mounted, handleMouseMove, handleMouseLeave } = cursorFollow;
 
   const previewImage = (
     <div
@@ -126,31 +56,36 @@ export function ProjectCard({ project }) {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <GlassCard className="group border-b border-white/10 hover:shadow-2xl shadow-[#12071f]">
-        <a
+        <div
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          href={project.demo}
-          className={`relative h-20 px-3 flex justify-between items-center duration-1000 ease-out cursor-pointer`}
+          className={`relative h-20 flex items-center`}
         >
-          <div className="">
+          <a
+            href={project.demo}
+            className="w-full h-full px-3 flex items-center"
+          >
             <h3 className="text-lg font-semibold text-white/70 group-hover:text-white duration-300 sm:text-xl">
               {project.title}
             </h3>
-          </div>
+          </a>
           {project.tag && !isHovering ? (
-            <span className="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 font-mono text-[11px] text-gold-300">
+            <span className="absolute top-1/2 -translate-y-1/2 right-3 rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 font-mono text-[11px] text-gold-300">
               {project.tag}
             </span>
           ) : (
-            <a href={project.github} className={`text-xs text-white/80 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full space-x-1 duration-300`}>
+            <a
+              href={project.github}
+              className={`absolute top-1/2 -translate-y-1/2 right-3 text-xs text-white/80 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full space-x-1 duration-300`}
+            >
               <i className={`fa-brands fa-github`}></i>
               <span>Github</span>
             </a>
           )}
-        </a>
+        </div>
       </GlassCard>
 
-      {mounted && createPortal(previewImage, document.body)}
+      {isDesktop && mounted && createPortal(previewImage, document.body)}
     </motion.div>
   );
 }

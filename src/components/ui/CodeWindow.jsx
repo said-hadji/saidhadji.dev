@@ -90,7 +90,7 @@ export function CodeWindow({ className = '' }) {
                 : i === visibleLines
                 ? renderLine(segments, visibleChars)
                 : null}
-              {i === visibleLines && <span className="inline-block w-[2px] h-4 -mb-0.5 bg-violet-400 animate-blink" />}
+              {i === visibleLines && <span className="inline-block w-0.5 h-4 -mb-0.5 bg-violet-400 animate-blink" />}
             </span>
           </div>
         ))}
