@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { GlassCard } from "./ui/GlassCard";
 import { useIsDesktop } from "../hooks/useIsDesktop";
 import { useCursorFollow } from "../hooks/useCursorFollow";
+import { PreviewImage } from "./ui/PreviewImage";
 
 const PREVIEW_WIDTH = 500;
 const PREVIEW_HEIGHT = 280;
@@ -19,34 +20,8 @@ export function ProjectCard({ project }) {
     EDGE_PADDING,
     LERP_SPEED,
   });
-  const { wrapperRef, isHovering, mounted, handleMouseMove, handleMouseLeave } = cursorFollow;
-
-  const previewImage = (
-    <div
-      ref={wrapperRef}
-      className="fixed top-0 left-0 z-9999 pointer-events-none"
-      style={{ willChange: "transform" }}
-    >
-      <img
-        src={project.screenShot}
-        alt={`${project.title} preview`}
-        style={{ width: PREVIEW_WIDTH, height: PREVIEW_HEIGHT }}
-        className={`
-          block
-          origin-top-left
-          rounded-3xl
-          object-cover
-          shadow-2xl
-          shadow-[#12071f]
-          ring-1
-          ring-white/10
-          transition-[scale,opacity]
-          ease-out
-          ${isHovering ? "scale-100 opacity-100 duration-300" : "scale-[0.1] opacity-0"}
-        `}
-      />
-    </div>
-  );
+  const { wrapperRef, isHovering, mounted, handleMouseMove, handleMouseLeave } =
+    cursorFollow;
 
   return (
     <motion.div
@@ -85,7 +60,18 @@ export function ProjectCard({ project }) {
         </div>
       </GlassCard>
 
-      {isDesktop && mounted && createPortal(previewImage, document.body)}
+      {isDesktop &&
+        mounted &&
+        createPortal(
+          <PreviewImage
+            project={project}
+            wrapperRef={wrapperRef}
+            PREVIEW_WIDTH={PREVIEW_WIDTH}
+            PREVIEW_HEIGHT={PREVIEW_HEIGHT}
+            isHovering={isHovering}
+          />,
+          document.body,
+        )}
     </motion.div>
   );
 }
