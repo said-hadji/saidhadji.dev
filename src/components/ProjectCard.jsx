@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { GlassCard } from "./ui/GlassCard";
 import { useIsDesktop } from "../hooks/useIsDesktop";
 import { useCursorFollow } from "../hooks/useCursorFollow";
@@ -55,57 +56,95 @@ function DesktopLayout({
 function CompactLayout({ project, clickedProject, setClickedProject }) {
   const { title, screenShot, demo, github } = project;
 
-  const toggleProject = () => {
-    setClickedProject((prev) => {
-      if (prev.title === title) {
-        return {
-          isOpen: false,
-          title: null,
-        };
-      }
-
-      return {
-        isOpen: true,
-        title
-      };
-    });
-  };
+  const contentRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState(0);
 
   const isOpen = clickedProject.isOpen && clickedProject.title === title;
 
+  const toggleProject = () => {
+    setClickedProject((prev) => {
+      if (prev.title === title) {
+        return { isOpen: false, title: null };
+      }
+      return { isOpen: true, title };
+    });
+  };
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen]);
+
   return (
-    <div
-      onClick={toggleProject}
-      style={{
-        gridTemplateRows: isOpen ? "auto 1fr" : "auto 0fr",
-      }}
-      className={`relative grid ${isOpen ? "gap-4" : "gap-0"} transition-[grid-template-rows] duration-300`}
-    >
+    <div onClick={toggleProject} className="relative cursor-pointer">
       <div
-        className={`relative w-full grid grid-cols-2 ${isOpen ? "border-b border-white/10" : ""} py-5`}
+        className={`relative w-full grid grid-cols-2 border-b transition-colors duration-300 ${
+          isOpen ? "border-white/10" : "border-transparent"
+        } py-5`}
       >
         <h3 className="text-lg font-semibold text-white/70 group-hover:text-white duration-300 sm:text-xl">
           {title}
         </h3>
 
-        {isOpen ? (
-          <GithubLink href={github} />
-        ) : (
-          <span className={`flex justify-end translate-y-0.75`}>
-            <ChevronDown className={`text-white/50`} />
-          </span>
-        )}
+        <div className="relative flex justify-end">
+          <AnimatePresence mode="wait" initial={false}>
+            {isOpen ? (
+              <motion.div
+                key="github"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <GithubLink href={github} />
+              </motion.div>
+            ) : (
+              <motion.span
+                key="chevron"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="flex justify-end translate-y-0.75"
+              >
+                <ChevronDown className="text-white/50" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
-      <a href={demo} className={`overflow-hidden`}>
-        <img src={screenShot} alt="" className={`rounded-2xl`} />
-      </a>
+      <div
+        style={{ height: isOpen ? `${contentHeight + 16}px` : "0px" }}
+        className="overflow-hidden transition-[height] duration-300 ease-out"
+      >
+        <div
+          ref={contentRef}
+          className={isOpen ? "pt-4" : "pt-4 pointer-events-none"}
+        >
+          <a
+            href={demo}
+            onClick={(e) => e.stopPropagation()}
+            className="block overflow-hidden rounded-2xl"
+          >
+            <img
+              src={screenShot}
+              alt=""
+              className="w-full rounded-2xl"
+              onLoad={() => {
+                if (contentRef.current) {
+                  setContentHeight(contentRef.current.scrollHeight);
+                }
+              }}
+            />
+          </a>
 
-      {isOpen && (
-        <span className={`text-xs text-white/70 text-center mb-4`}>
-          Click the image to see Live Demo
-        </span>
-      )}
+          <span className="block text-xs text-white/70 text-center mt-4">
+            Click the image to see Live Demo
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
