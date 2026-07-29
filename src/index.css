@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-ink-700: #1b1b26;
@@ -21,7 +21,7 @@
   --color-gold-500: #d99a1b;
 
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --shadow-glow-violet: 0 0 60px -12px rgba(124, 92, 252, 0.45);
   --shadow-glow-gold: 0 0 60px -12px rgba(240, 180, 41, 0.35);
@@ -116,7 +116,9 @@ html {
 
 body {
   @apply bg-ink-950 text-mist-100 antialiased;
-  font-feature-settings: 'ss01' 1, 'cv11' 1;
+  font-feature-settings:
+    "ss01" 1,
+    "cv11" 1;
 }
 
 ::selection {
@@ -130,6 +132,7 @@ body {
 }
 ::-webkit-scrollbar-track {
   background: #06060a;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb {
   background: #1f1f2c;
@@ -140,13 +143,23 @@ body {
   background: #2b2b3b;
 }
 
-/* Consistent, visible focus styling for keyboard users */
-:focus-visible {
-  outline: 2px solid #9b86ff;
-  outline-offset: 3px;
-  border-radius: 4px;
+.textarea-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.textarea-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+.textarea-scrollbar::-webkit-scrollbar-thumb {
+  background: #515172;
+  border-radius: 999px;
+  border: 2px solid #1a1a1e;
+}
+.textarea-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6f6f97;
 }
 
+/* Consistent, visible focus styling for keyboard users */
 .text-balance {
   text-wrap: balance;
 }

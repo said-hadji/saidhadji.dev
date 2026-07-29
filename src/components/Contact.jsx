@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Send, CheckCircle2 } from "lucide-react";
+import { Send, CheckCircle2, ChevronDown } from "lucide-react";
 import { Container } from "./ui/Container";
 import { SectionHeading } from "./ui/SectionHeading";
 import { GlassCard } from "./ui/GlassCard";
@@ -50,7 +50,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
   });
   const [status, setStatus] = useState("idle"); // idle | sending | sent
   const [isSelect, setIsSelect] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const isValid =
     form.name.trim() &&
@@ -66,6 +66,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
       setTimeout(() => {
         setStatus("idle");
         setForm({ name: "", email: "", projectType: "", message: "" });
+        setSelectedOption(null);
       }, 2600);
     }, 1100);
   };
@@ -103,23 +104,27 @@ export function Contact({ isStartProject, setIsStartProject }) {
           subtitle="Tell me a bit about what you need. I read every message and reply within a day or two."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-5">
-          <div className="lg:col-span-2">
-            <div className="space-y-4">
+        <div className="mt-16 flex flex-col-reverse sm:items-center gap-15">
+          <div className="">
+            <div className="flex gap-2 flex-wrap">
               {INFO.map((i) => {
                 const content = (
-                  <GlassCard className="flex items-center gap-4 p-5 transition-colors duration-300 hover:border-violet-500/30">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/3">
+                  <GlassCard className={`flex items-center gap-2`}>
+                    <span
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center duration-300 ${i.label === "Location" ? "bg-linear-to-r from-white/5 to-transparent border-t border-b border-l border-white/10 rounded-l-xl" : "border border-white/10 hover:border-violet-500 bg-white/3 rounded-xl"}`}
+                    >
                       <i className={i.icon}></i>
                     </span>
-                    <span>
-                      <span className="block font-mono text-[11px] tracking-widest text-mist-500">
-                        {i.label.toUpperCase()}
+                    {i.label === "Location" && (
+                      <span>
+                        <span className="block font-mono text-[11px] tracking-widest text-mist-500">
+                          {i.label.toUpperCase()}
+                        </span>
+                        <span className="block text-sm font-medium text-mist-100">
+                          {i.value}
+                        </span>
                       </span>
-                      <span className="block text-sm font-medium text-mist-100">
-                        {i.value}
-                      </span>
-                    </span>
+                    )}
                   </GlassCard>
                 );
                 return i.href ? (
@@ -138,9 +143,13 @@ export function Contact({ isStartProject, setIsStartProject }) {
             </div>
           </div>
 
-          <div onClick={(e) => e.stopPropagation()} className="lg:col-span-3">
-            <GlassCard className="p-6 sm:p-8">
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+          <div onClick={(e) => e.stopPropagation()} className="">
+            <GlassCard className="h-full">
+              <form
+                onSubmit={handleSubmit}
+                className="h-full flex flex-col justify-between gap-5"
+                noValidate
+              >
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <label className="block">
                     <span className="mb-2 block text-sm font-medium text-mist-300">
@@ -154,7 +163,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
                         setForm((f) => ({ ...f, name: e.target.value }))
                       }
                       placeholder="Jane Doe"
-                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
+                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 outline-none focus:border-violet-500"
                     />
                   </label>
                   <label className="block">
@@ -169,7 +178,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
                         setForm((f) => ({ ...f, email: e.target.value }))
                       }
                       placeholder="jane@company.com"
-                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
+                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 outline-none focus:border-violet-500"
                     />
                   </label>
                 </div>
@@ -182,18 +191,22 @@ export function Contact({ isStartProject, setIsStartProject }) {
                   <div ref={selectRef} className={`relative`}>
                     <div
                       onClick={() => setIsSelect(!isSelect)}
-                      className="w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 transition-colors focus:border-violet-500/60 cursor-pointer"
+                      className="flex items-center w-full rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 transition-colors cursor-pointer"
                     >
-                      <span>
+                      <span className={`flex-1`}>
                         {selectedOption
                           ? selectedOption
                           : "Select one (optional)"}
+                      </span>
+
+                      <span>
+                        <ChevronDown size={17} />
                       </span>
                     </div>
 
                     {isSelect && (
                       <div
-                        className={`absolute top-full inset-x-0 flex flex-col w-full rounded-xl border border-white/10 bg-ink-950 p-1 text-sm text-mist-100 transition-colors focus:border-violet-500/60`}
+                        className={`absolute top-full inset-x-0 flex flex-col w-full rounded-xl border border-white/10 bg-ink-950 p-1 text-sm text-mist-100 transition-colors`}
                       >
                         {PROJECT_TYPES.map((type) => (
                           <span
@@ -224,14 +237,14 @@ export function Contact({ isStartProject, setIsStartProject }) {
                       setForm((f) => ({ ...f, message: e.target.value }))
                     }
                     placeholder="Tell me a little about your project..."
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors focus:border-violet-500/60"
+                    className="textarea-scrollbar w-full resize-none rounded-xl border border-white/10 bg-white/3 px-4 py-3 text-sm text-mist-100 placeholder:text-mist-600 transition-colors outline-none focus:border-violet-500"
                   />
                 </label>
 
                 <Button
                   type="submit"
                   disabled={!isValid || status !== "idle"}
-                  className="w-full justify-center disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="self-start disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {status === "idle" && (
                     <>
@@ -245,9 +258,6 @@ export function Contact({ isStartProject, setIsStartProject }) {
                     </>
                   )}
                 </Button>
-                <p role="status" aria-live="polite" className="sr-only">
-                  {status === "sent" ? "Your message has been sent." : ""}
-                </p>
               </form>
             </GlassCard>
           </div>

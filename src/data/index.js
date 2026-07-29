@@ -42,7 +42,7 @@ export const SOCIALS = {
   email: "saidhadji.dev@gmail.com",
   github: "https://github.com/said-hadji",
   linkedin: "https://www.linkedin.com/in/said-hadji-363793404",
-  location: "Morocco (GMT+1)",
+  location: "Morocco",
 };
 
 // Core stack you actually ship client work with.

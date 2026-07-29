@@ -33,7 +33,7 @@ export function Services() {
         >
           {SERVICES.map(({ icon: Icon, title, description }) => (
             <motion.div key={title} variants={item} whileHover={{ y: -6 }}>
-              <GlassCard className="group relative h-full border border-white/8 hover:border-violet-500/40 bg-white/3 backdrop-blur-xl shadow-card hover:shadow-glow-violet rounded-2xl p-7 transition-all duration-300">
+              <GlassCard className="group h-full border border-white/8 hover:border-violet-500/40 bg-white/3 backdrop-blur-xl shadow-card hover:shadow-glow-violet rounded-2xl p-7 transition-all duration-300">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-linear-to-br from-violet-500/20 to-transparent transition-transform duration-300 group-hover:scale-110">
                   <Icon size={20} className="text-violet-300" aria-hidden="true" />
                 </div>
