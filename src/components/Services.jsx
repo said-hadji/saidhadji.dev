@@ -19,8 +19,8 @@ export function Services() {
       <Container>
         <SectionHeading
           eyebrow="What I Can Help With"
-          title="Frontend work, done properly."
-          subtitle="I focus on one thing — interfaces — so I can do it well."
+          title="Frontend development focused on clean, responsive interfaces."
+          subtitle="I build modern React applications with reusable components, responsive layouts, and clean code."
           align="center"
         />
 

@@ -18,7 +18,7 @@ export function Process() {
       <Container>
         <SectionHeading
           eyebrow="How We'd Work Together"
-          title="A simple, clear process."
+          title="A simple, transparent process."
           align="center"
         />
 

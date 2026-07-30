@@ -153,7 +153,7 @@ export function About() {
             >
               {QUICK_FACTS.map(({ label, value, icon: Icon }) => (
                 <motion.div key={label} variants={item}>
-                  <GlassCard className="p-5 transition-colors duration-300 hover:border-violet-500/30">
+                  <GlassCard className="h-full p-5 border border-white/8 hover:border-violet-500/40 bg-white/3 backdrop-blur-xl rounded-2xl">
                     <Icon
                       size={18}
                       className="text-violet-400"

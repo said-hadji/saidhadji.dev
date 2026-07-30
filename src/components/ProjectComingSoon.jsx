@@ -15,11 +15,11 @@ export function ProjectComingSoon() {
         <Hammer size={18} className="text-violet-400" aria-hidden="true" />
       </span>
       <h3 className="mt-5 text-lg font-semibold text-mist-100">
-        More projects in progress
+        More projects coming soon
       </h3>
       <p className="mt-2 max-w-xs text-sm leading-relaxed text-mist-500">
-        I'm actively building. Check back soon, or see what I'm
-        working on right now on GitHub.
+        I'm constantly learning and building new projects. In the meantime, you
+        can explore my latest work on GitHub.
       </p>
       <a
         href={SOCIALS.github}

@@ -16,8 +16,8 @@ export function Projects() {
       <Container>
         <SectionHeading
           eyebrow="Selected Work"
-          title="A project I built to solve a real problem."
-          subtitle="I'd rather show you one thing done properly than five things done halfway."
+          title="Projects I've built with attention to detail."
+          subtitle="Real projects focused on clean code, responsive design, and thoughtful user experience."
         />
 
         <div className="mt-14 flex flex-col gap-10">

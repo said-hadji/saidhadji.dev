@@ -28,7 +28,7 @@ const INFO = [
   {
     icon: "fa-solid fa-location-dot",
     label: "Location",
-    value: `${SOCIALS.location} — available for remote work`,
+    value: `${SOCIALS.location} — Open for freelance work`,
     href: null,
   },
 ];
@@ -101,7 +101,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
         <SectionHeading
           eyebrow="Contact"
           title="Have a project in mind? Let's talk."
-          subtitle="Tell me a bit about what you need. I read every message and reply within a day or two."
+          subtitle="Tell me about your project. I'll get back to you soon."
         />
 
         <div className="mt-16 flex flex-col-reverse sm:items-center gap-15">
@@ -109,7 +109,9 @@ export function Contact({ isStartProject, setIsStartProject }) {
             <div className="flex gap-2 flex-wrap">
               {INFO.map((i) => {
                 const content = (
-                  <GlassCard className={`flex items-center gap-2 border border-white/10 hover:border-violet-500 bg-white/3 rounded-xl duration-300`}>
+                  <GlassCard
+                    className={`flex items-center gap-2 border border-white/10 hover:border-violet-500 bg-white/3 rounded-xl duration-300`}
+                  >
                     <span
                       className={`flex h-11 w-11 shrink-0 items-center justify-center`}
                     >
@@ -185,7 +187,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
 
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium text-mist-300">
-                    Project type
+                    Project category
                   </span>
 
                   <div ref={selectRef} className={`relative`}>

@@ -19,8 +19,8 @@ import {
   PackageCheck,
 } from "lucide-react";
 
-import brewhaus from "../assets/screenShots/brewhausScreenshot.png"
-import ironforge from "../assets/screenShots/ironforgeScreenshot.png"
+import brewhaus from "../assets/screenShots/brewhausScreenshot.png";
+import ironforge from "../assets/screenShots/ironforgeScreenshot.png";
 
 // ---- Replace these with your real details ----
 export const PROFILE = {
@@ -65,7 +65,7 @@ export const SECONDARY_SKILLS = [
 
 // Honest "quick facts" — replaces vanity stats you can't back up yet.
 export const QUICK_FACTS = [
-  { label: "Based in", value: "Morocco (GMT+1)", icon: MapPin },
+  { label: "Based in", value: "Morocco", icon: MapPin },
   { label: "Core stack", value: "React · Tailwind CSS", icon: Layers },
   {
     label: "Availability",
@@ -143,62 +143,62 @@ export const SERVICES = [
     icon: Code2,
     title: "Frontend Development",
     description:
-      "Building clean, responsive interfaces with React and Tailwind CSS — from a Figma file or a rough idea.",
+      "Building responsive websites and interfaces with React, JavaScript, and Tailwind CSS.",
   },
   {
     icon: Component,
     title: "React Applications",
     description:
-      "Component-based apps that are easy to read, extend, and hand off to another developer.",
+      "Creating component-based applications that are organized, reusable, and easy to maintain.",
   },
   {
     icon: Smartphone,
     title: "Responsive Design",
     description:
-      "Interfaces that work properly on any screen — not just a resized version of the desktop layout.",
+      "Building layouts that work well across mobile, tablet, and desktop devices.",
   },
   {
     icon: Palette,
-    title: "UI Implementation (Figma \u2192 Code)",
+    title: "UI Implementation",
     description:
-      "Turning your designs into interfaces that match, pixel by pixel.",
-  },
-  {
-    icon: Sparkles,
-    title: "Performance-Minded Builds",
-    description:
-      "Writing code that loads quickly and doesn't get in the user's way.",
+      "Turning Figma designs or ideas into functional, responsive user interfaces.",
   },
   {
     icon: Plug,
     title: "API Integration",
     description:
-      "Connecting your frontend to existing REST APIs — fetching, displaying, and managing data cleanly.",
+      "Connecting frontend applications to existing REST APIs to display and manage data.",
+  },
+  {
+    icon: Sparkles,
+    title: "Performance-Minded Builds",
+    description:
+      "Writing readable, reusable code with a focus on maintainability and consistency.",
   },
 ];
 
 export const PROCESS_STEPS = [
   {
     icon: MessageCircle,
-    title: "Quick intro",
-    description: "We talk about what you need and whether I'm the right fit.",
+    title: "Let's talk",
+    description: "We discuss your project, your goals, and whether I'm the right person to build it.",
   },
   {
     icon: ClipboardList,
-    title: "Plan & scope",
+    title: "Planning",
     description:
-      "I break the work into clear tasks, so you know what you\u2019re getting and when.",
+      "We define the features, timeline, and what will be delivered before development starts.",
   },
   {
     icon: Code2,
     title: "Build",
     description:
-      "I develop the interface in React, sharing progress as I go — no long silences.",
+      "I build the frontend, keeping you updated throughout the development process.",
   },
   {
     icon: PackageCheck,
-    title: "Review & handoff",
+    title: "Review & Handoff",
     description:
-      "You review the work, I make adjustments, and you get clean, organized code.",
+      "You review the final result, request any agreed revisions, and receive the completed project.",
   },
 ];
