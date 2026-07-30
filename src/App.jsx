@@ -16,7 +16,7 @@ export default function App() {
     if (isStartProject) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ""
+      document.body.style.overflow = "";
     }
   }, [isStartProject]);
 
@@ -27,12 +27,15 @@ export default function App() {
       </a>
       <Navbar setIsStartProject={setIsStartProject} />
       <main id="main">
-        <Hero />
+        <Hero setIsStartProject={setIsStartProject} />
         <About />
         <Projects />
         <Services />
         <Process />
-        <Contact isStartProject={isStartProject} setIsStartProject={setIsStartProject}/>
+        <Contact
+          isStartProject={isStartProject}
+          setIsStartProject={setIsStartProject}
+        />
       </main>
       <Footer />
       <BackToTop />

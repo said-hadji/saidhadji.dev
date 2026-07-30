@@ -93,7 +93,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
       onClick={() => setIsStartProject(false)}
       className={
         isStartProject
-          ? "fixed inset-0 overflow-y-auto z-50 w-full bg-black/30 backdrop-blur-2xl py-10 lg:flex lg:items-center"
+          ? "fixed inset-0 overflow-y-auto z-50 w-full bg-black/30 backdrop-blur-[180px] py-10 lg:flex lg:items-center"
           : "relative py-28 sm:py-36"
       }
     >
@@ -109,18 +109,18 @@ export function Contact({ isStartProject, setIsStartProject }) {
             <div className="flex gap-2 flex-wrap">
               {INFO.map((i) => {
                 const content = (
-                  <GlassCard className={`flex items-center gap-2`}>
+                  <GlassCard className={`flex items-center gap-2 border border-white/10 hover:border-violet-500 bg-white/3 rounded-xl duration-300`}>
                     <span
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center duration-300 ${i.label === "Location" ? "bg-linear-to-r from-white/5 to-transparent border-t border-b border-l border-white/10 rounded-l-xl" : "border border-white/10 hover:border-violet-500 bg-white/3 rounded-xl"}`}
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center`}
                     >
                       <i className={i.icon}></i>
                     </span>
                     {i.label === "Location" && (
-                      <span>
+                      <span className={`pr-3`}>
                         <span className="block font-mono text-[11px] tracking-widest text-mist-500">
                           {i.label.toUpperCase()}
                         </span>
-                        <span className="block text-sm font-medium text-mist-100">
+                        <span className="block text-xs font-medium text-mist-100">
                           {i.value}
                         </span>
                       </span>

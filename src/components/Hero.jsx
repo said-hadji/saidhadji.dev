@@ -1,25 +1,37 @@
-import { useRef } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, Mail, ChevronDown } from 'lucide-react'
-import { Container } from './ui/Container'
-import { Button } from './ui/Button'
-import { CodeWindow } from './ui/CodeWindow'
-import { FloatingParticles } from './ui/FloatingParticles'
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Mail, ChevronDown } from "lucide-react";
+import { Container } from "./ui/Container";
+import { Button } from "./ui/Button";
+import { CodeWindow } from "./ui/CodeWindow";
+import { FloatingParticles } from "./ui/FloatingParticles";
+import { useActiveSection } from "../hooks/useActiveSection";
+import { NAV_ITEMS } from "../data";
 
-export function Hero() {
-  const heroRef = useRef(null)
+export function Hero({ setIsStartProject }) {
+  const heroRef = useRef(null);
 
   const handleMouseMove = (e) => {
-    const el = heroRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    el.style.setProperty('--spot-x', `${e.clientX - rect.left}px`)
-    el.style.setProperty('--spot-y', `${e.clientY - rect.top}px`)
-  }
+    const el = heroRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
+    el.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+  };
 
   const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
-  }
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const activeId = useActiveSection(NAV_ITEMS.map((n) => n.id));
+
+  const handleStartProject = () => {
+    if (activeId !== "contact") {
+      setIsStartProject(true);
+    } else {
+      document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section
@@ -27,7 +39,7 @@ export function Hero() {
       ref={heroRef}
       onMouseMove={handleMouseMove}
       className="relative flex min-h-screen items-center overflow-hidden pt-28 sm:pt-32"
-      style={{ '--spot-x': '50%', '--spot-y': '30%' }}
+      style={{ "--spot-x": "50%", "--spot-y": "30%" }}
     >
       {/* Grid + spotlight background */}
       <div className="absolute inset-0 bg-grid-pattern bg-size-[56px_56px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
@@ -35,12 +47,18 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-70 transition-opacity"
         style={{
           background:
-            'radial-gradient(600px circle at var(--spot-x) var(--spot-y), rgba(124,92,252,0.12), transparent 60%)',
+            "radial-gradient(600px circle at var(--spot-x) var(--spot-y), rgba(124,92,252,0.12), transparent 60%)",
         }}
         aria-hidden="true"
       />
-      <div className="absolute -left-40 top-20 h-72 w-72 rounded-full bg-violet-600/20 blur-[100px]" aria-hidden="true" />
-      <div className="absolute -right-32 top-64 h-72 w-72 rounded-full bg-violet-400/10 blur-[120px]" aria-hidden="true" />
+      <div
+        className="absolute -left-40 top-20 h-72 w-72 rounded-full bg-violet-600/20 blur-[100px]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -right-32 top-64 h-72 w-72 rounded-full bg-violet-400/10 blur-[120px]"
+        aria-hidden="true"
+      />
       <FloatingParticles count={16} />
 
       <Container className="relative grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
@@ -73,10 +91,10 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.22 }}
             className="mt-6 max-w-xl text-base leading-relaxed text-mist-400 sm:text-lg"
           >
-            I&rsquo;m a self-taught frontend developer specializing in React
-            and Tailwind CSS. I build responsive, detail-oriented interfaces
-            for freelance clients — from a Figma file, a rough sketch, or
-            just an idea.
+            I&rsquo;m a self-taught frontend developer specializing in React and
+            Tailwind CSS. I build responsive, detail-oriented interfaces for
+            freelance clients — from a Figma file, a rough sketch, or just an
+            idea.
           </motion.p>
 
           <motion.div
@@ -85,13 +103,16 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.34 }}
             className="mt-10 flex flex-col gap-4 sm:flex-row"
           >
-            <Button onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button
+              onClick={() =>
+                document
+                  .getElementById("work")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
               View My Work <ArrowRight size={16} aria-hidden="true" />
             </Button>
-            <Button
-              variant="secondary"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
+            <Button variant="secondary" onClick={handleStartProject}>
               <Mail size={16} aria-hidden="true" /> Start a Project
             </Button>
           </motion.div>
@@ -129,11 +150,11 @@ export function Hero() {
         <span className="font-mono text-[11px] tracking-widest">SCROLL</span>
         <motion.span
           animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
           <ChevronDown size={18} />
         </motion.span>
       </motion.button>
     </section>
-  )
+  );
 }
