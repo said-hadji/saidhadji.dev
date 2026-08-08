@@ -1,11 +1,11 @@
 import { createPortal } from "react-dom";
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { GlassCard } from "./ui/GlassCard";
 import { useIsDesktop } from "../hooks/useIsDesktop";
 import { useCursorFollow } from "../hooks/useCursorFollow";
 import { PreviewImage } from "./ui/PreviewImage";
-import { ChevronDown } from "lucide-react";
+import { Button } from "./ui/Button";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 const PREVIEW_WIDTH = 500;
 const PREVIEW_HEIGHT = 280;
@@ -53,97 +53,33 @@ function DesktopLayout({
   );
 }
 
-function CompactLayout({ project, clickedProject, setClickedProject }) {
+function CompactLayout({ project }) {
   const { title, screenShot, demo, github } = project;
 
-  const contentRef = useRef(null);
-  const [contentHeight, setContentHeight] = useState(0);
-
-  const isOpen = clickedProject.isOpen && clickedProject.title === title;
-
-  const toggleProject = () => {
-    setClickedProject((prev) => {
-      if (prev.title === title) {
-        return { isOpen: false, title: null };
-      }
-      return { isOpen: true, title };
-    });
-  };
-
-  useEffect(() => {
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
-    }
-  }, [isOpen]);
-
   return (
-    <div onClick={toggleProject} className="relative cursor-pointer">
-      <div
-        className={`relative w-full grid grid-cols-2 border-b transition-colors duration-300 ${
-          isOpen ? "border-white/10" : "border-transparent"
-        } py-5`}
-      >
-        <h3 className="text-lg font-semibold text-white/70 group-hover:text-white duration-300 sm:text-xl">
-          {title}
-        </h3>
+    <div
+      className={`w-92 md:w-120 lg:w-150 shrink-0 transition-colors duration-300`}
+    >
+      <h3 className="text-2xl text-white font-medium mb-4">{title}</h3>
 
-        <div className="relative flex justify-end">
-          <AnimatePresence mode="wait" initial={false}>
-            {isOpen ? (
-              <motion.div
-                key="github"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <GithubLink href={github} />
-              </motion.div>
-            ) : (
-              <motion.span
-                key="chevron"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="flex justify-end translate-y-0.75"
-              >
-                <ChevronDown className="text-white/50" />
-              </motion.span>
-            )}
-          </AnimatePresence>
+      <div
+        className={`bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-1 mb-4`}
+      >
+        <div className={`overflow-hidden rounded-xl`}>
+          <img src={screenShot} alt="" />
         </div>
       </div>
 
-      <div
-        style={{ height: isOpen ? `${contentHeight + 16}px` : "0px" }}
-        className="overflow-hidden transition-[height] duration-300 ease-out"
-      >
-        <div
-          ref={contentRef}
-          className={isOpen ? "pt-4" : "pt-4 pointer-events-none"}
-        >
-          <a
-            href={demo}
-            onClick={(e) => e.stopPropagation()}
-            className="block overflow-hidden rounded-2xl"
-          >
-            <img
-              src={screenShot}
-              alt=""
-              className="w-full rounded-2xl"
-              onLoad={() => {
-                if (contentRef.current) {
-                  setContentHeight(contentRef.current.scrollHeight);
-                }
-              }}
-            />
-          </a>
+      <div className={`grid grid-cols-2 gap-2`}>
+        <Button as="a" href={demo}>
+          <SquareArrowOutUpRight size={15} />
+          <span>Live Demo</span>
+        </Button>
 
-          <span className="block text-xs text-white/70 text-center mt-4">
-            Click the image to see Live Demo
-          </span>
-        </div>
+        <Button as="a" variant={"secondary"} href={github}>
+          <i className={`fa-brands fa-github`}></i>
+          <span>Code</span>
+        </Button>
       </div>
     </div>
   );
@@ -163,12 +99,18 @@ export function ProjectCard({ project, clickedProject, setClickedProject }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      initial={isDesktop ?? { opacity: 0, y: 24 }}
+      whileInView={isDesktop ?? { opacity: 1, y: 0 }}
+      viewport={isDesktop ?? { once: true, margin: "-60px" }}
+      transition={isDesktop ?? { duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
-      <GlassCard className="group border-b border-white/10 xl:hover:shadow-2xl xl:shadow-[#12071f]">
+      <GlassCard
+        className={
+          isDesktop
+            ? "group border-b border-white/10 xl:hover:shadow-2xl xl:shadow-[#12071f]"
+            : ""
+        }
+      >
         {isDesktop ? (
           <DesktopLayout
             handleMouseMove={handleMouseMove}

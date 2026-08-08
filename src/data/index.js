@@ -181,7 +181,8 @@ export const PROCESS_STEPS = [
   {
     icon: MessageCircle,
     title: "Let's talk",
-    description: "We discuss your project, your goals, and whether I'm the right person to build it.",
+    description:
+      "We discuss your project, your goals, and whether I'm the right person to build it.",
   },
   {
     icon: ClipboardList,
