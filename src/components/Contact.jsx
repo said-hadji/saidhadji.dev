@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Send, CheckCircle2, ChevronDown } from "lucide-react";
+import { Send, CheckCircle2, ChevronDown, X } from "lucide-react";
 import { Container } from "./ui/Container";
 import { SectionHeading } from "./ui/SectionHeading";
 import { GlassCard } from "./ui/GlassCard";
@@ -90,14 +90,22 @@ export function Contact({ isStartProject, setIsStartProject }) {
   return (
     <section
       id="contact"
-      onClick={() => setIsStartProject(false)}
       className={
         isStartProject
-          ? "fixed inset-0 overflow-y-auto z-50 w-full bg-black/30 backdrop-blur-[180px] py-10 lg:flex lg:items-center"
+          ? "fixed inset-0 overflow-y-auto z-50 w-full bg-black/30 backdrop-blur-[180px] py-10 lg:flex lg:items-center scrollBar"
           : "relative py-28 sm:py-36"
       }
     >
       <Container>
+        {isStartProject && (
+          <button
+            onClick={() => setIsStartProject(false)}
+            className={`absolute top-4 right-4 bg-white/5 border border-white/10 p-2 rounded-full`}
+          >
+            <X size={15} />
+          </button>
+        )}
+
         <SectionHeading
           eyebrow="Contact"
           title="Have a project in mind? Let's talk."
