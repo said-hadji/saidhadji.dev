@@ -59,7 +59,7 @@ export function Projects() {
           subtitle="Real projects focused on clean code, responsive design, and thoughtful user experience."
         />
 
-        <div className="mt-14 flex flex-col gap-10">
+        <div className="mt-14 flex flex-col gap-14">
           <div
             ref={ref}
             className="flex xl:flex-col gap-5 xl:gap-0 overflow-x-auto duration-500 scrollBar"
