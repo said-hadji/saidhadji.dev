@@ -92,7 +92,7 @@ export function Contact({ isStartProject, setIsStartProject }) {
       id="contact"
       className={
         isStartProject
-          ? "fixed inset-0 overflow-y-auto z-50 w-full bg-black/30 backdrop-blur-[180px] py-10 lg:flex lg:items-center scrollBar"
+          ? "fixed top-0 left-0 w-full h-screen overflow-y-auto z-50 bg-black/30 backdrop-blur-[180px] py-10 lg:flex lg:items-center scrollBar"
           : "relative py-28 sm:py-36"
       }
     >
