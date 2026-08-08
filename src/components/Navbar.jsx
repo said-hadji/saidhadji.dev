@@ -112,39 +112,45 @@ export function Navbar({ setIsStartProject }) {
 
       <AnimatePresence>
         {open && (
-          <motion.nav
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            className="overflow-hidden border-t border-white/8 bg-ink-950/95 backdrop-blur-xl md:hidden"
-            aria-label="Mobile"
-          >
-            <Container className="flex flex-col gap-1 py-4">
-              {NAV_ITEMS.map((item, i) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`rounded-lg px-3 py-3 text-left text-base font-medium transition-colors ${
-                    activeId === item.id
-                      ? "bg-violet-500/10 text-violet-300"
-                      : "text-mist-300 hover:bg-white/3"
-                  }`}
+          <div>
+            <div
+              onClick={() => setOpen((v) => !v)}
+              className={`w-full h-screen fixed top-0 left-0 -z-10 bg-black/90`}
+            ></div>
+            <motion.nav
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              className="absolute top-full inset-x-0 z-50 overflow-hidden border-t border-white/8 bg-ink-950/95 backdrop-blur-xl md:hidden"
+              aria-label="Mobile"
+            >
+              <Container className="flex flex-col gap-1 py-4">
+                {NAV_ITEMS.map((item, i) => (
+                  <motion.button
+                    key={item.id}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`rounded-lg px-3 py-3 text-left text-base font-medium transition-colors ${
+                      activeId === item.id
+                        ? "bg-violet-500/10 text-violet-300"
+                        : "text-mist-300 hover:bg-white/3"
+                    }`}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
+                <Button
+                  variant="primary"
+                  className="mt-2 justify-center"
+                  onClick={handleStartProject}
                 >
-                  {item.label}
-                </motion.button>
-              ))}
-              <Button
-                variant="primary"
-                className="mt-2 justify-center"
-                onClick={handleStartProject}
-              >
-                Start a Project
-              </Button>
-            </Container>
-          </motion.nav>
+                  Start a Project
+                </Button>
+              </Container>
+            </motion.nav>
+          </div>
         )}
       </AnimatePresence>
     </header>
