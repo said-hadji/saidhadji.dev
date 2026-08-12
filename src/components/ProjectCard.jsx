@@ -25,6 +25,8 @@ function GithubLink({ href, className = "" }) {
   );
 }
 
+console.log(window.innerWidth)
+
 function DesktopLayout({
   handleMouseMove,
   handleMouseLeave,
@@ -58,12 +60,13 @@ function CompactLayout({ project }) {
 
   return (
     <div
-      className={`w-92 md:w-120 lg:w-150 shrink-0 transition-colors duration-300`}
+      style={{width: window.innerWidth - 50}}
+      className={`shrink-0 transition-colors duration-300`}
     >
       <h3 className="text-2xl text-white font-medium mb-4">{title}</h3>
 
       <div
-        className={`bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-1 mb-4`}
+        className={`h-53 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-1 mb-4 overflow-hidden`}
       >
         <div className={`overflow-hidden rounded-xl`}>
           <img src={screenShot} alt="" />

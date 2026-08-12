@@ -21,6 +21,7 @@ import {
 
 import brewhaus from "../assets/screenShots/brewhausScreenshot.png";
 import ironforge from "../assets/screenShots/ironforgeScreenshot.png";
+import quartier from "../assets/screenShots/quartierScreenshot.png";
 
 // ---- Replace these with your real details ----
 export const PROFILE = {
@@ -113,28 +114,31 @@ export const TIMELINE = [
 // avoid filling this with placeholders; one honest case study beats several fake ones.
 export const PROJECTS = [
   {
-    title: "Brewhaus",
-    subtitle: "Premium Coffee Shop Landing Page",
+    title: "Quartier",
+    subtitle: "A refined café experience in the heart of London.",
     tag: "Frontend",
     tags: ["React", "Tailwind CSS", "JavaScript"],
-    description:
-      "A premium coffee shop landing page built with React and Tailwind CSS, featuring reusable components, responsive layouts, interactive menu filtering, and modern UI/UX design.",
-    gradient: "from-[#fff8f2] to-[#6f4e37]",
-    screenShot: brewhaus,
-    demo: "https://brewhaus-iota.vercel.app/",
-    github: "https://github.com/said-hadji/Brewhaus",
+    screenShot: quartier,
+    demo: "https://quartier-cafe.vercel.app/",
+    github: "https://github.com/said-hadji/quartier-cafe",
   },
   {
     title: "IronForge",
     subtitle: "Premium Gym Landing Page",
     tag: "Frontend",
     tags: ["React", "Tailwind CSS", "JavaScript"],
-    description:
-      "A modern, responsive gym landing page built with React and Tailwind CSS. Features smooth animations with Framer Motion, an interactive BMI calculator with healthy BMI ranges, reusable components, and a clean premium UI focused on performance and user experience.",
-    gradient: "from-[#0b0b0b] via-zinc-900 to-orange-500/30",
     screenShot: ironforge,
     demo: "https://ironforge-gym-rose.vercel.app/",
     github: "https://github.com/said-hadji/ironforge-gym",
+  },
+  {
+    title: "Brewhaus",
+    subtitle: "Premium Coffee Shop Landing Page",
+    tag: "Frontend",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    screenShot: brewhaus,
+    demo: "https://brewhaus-iota.vercel.app/",
+    github: "https://github.com/said-hadji/Brewhaus",
   },
 ];
 
