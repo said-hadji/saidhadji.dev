@@ -22,6 +22,7 @@ import {
 import brewhaus from "../assets/screenShots/brewhausScreenshot.png";
 import ironforge from "../assets/screenShots/ironforgeScreenshot.png";
 import quartier from "../assets/screenShots/quartierScreenshot.png";
+import otelury from "../assets/screenShots/oteluryScreenshot.png";
 
 // ---- Replace these with your real details ----
 export const PROFILE = {
@@ -115,7 +116,6 @@ export const TIMELINE = [
 export const PROJECTS = [
   {
     title: "Quartier",
-    subtitle: "A refined café experience in the heart of London.",
     tag: "Frontend",
     tags: ["React", "Tailwind CSS", "JavaScript"],
     screenShot: quartier,
@@ -124,12 +124,19 @@ export const PROJECTS = [
   },
   {
     title: "IronForge",
-    subtitle: "Premium Gym Landing Page",
     tag: "Frontend",
     tags: ["React", "Tailwind CSS", "JavaScript"],
     screenShot: ironforge,
     demo: "https://ironforge-gym-rose.vercel.app/",
     github: "https://github.com/said-hadji/ironforge-gym",
+  },
+  {
+    title: "Otelury",
+    tag: "Frontend",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    screenShot: otelury,
+    demo: "https://otelury-hotel.vercel.app/",
+    github: "https://github.com/said-hadji/otelury-hotel",
   },
   {
     title: "Brewhaus",

@@ -58,7 +58,7 @@ function CompactLayout({ project }) {
 
   return (
     <div
-      className={`w-[calc(100vw-50px)] max-w-125 shrink-0 transition-colors duration-300`}
+      className={`w-[calc(100vw-50px)] max-w-125 shrink-0 transition-colors duration-300 snap-center`}
     >
       <h3 className="text-2xl text-white font-medium mb-4">{title}</h3>
 
@@ -85,7 +85,7 @@ function CompactLayout({ project }) {
   );
 }
 
-export function ProjectCard({ project, clickedProject, setClickedProject }) {
+export function ProjectCard({ project }) {
   const isDesktop = useIsDesktop();
   const cursorFollow = useCursorFollow({
     PREVIEW_WIDTH,
@@ -119,11 +119,7 @@ export function ProjectCard({ project, clickedProject, setClickedProject }) {
             isHovering={isHovering}
           />
         ) : (
-          <CompactLayout
-            project={project}
-            clickedProject={clickedProject}
-            setClickedProject={setClickedProject}
-          />
+          <CompactLayout project={project} />
         )}
       </GlassCard>
 

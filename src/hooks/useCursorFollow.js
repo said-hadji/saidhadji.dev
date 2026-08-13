@@ -13,7 +13,6 @@ export function useCursorFollow({
   const isDesktop = useIsDesktop();
 
   const [isHovering, setIsHovering] = useState(false);
-  console.log(isHovering);
   const [mounted, setMounted] = useState(false);
 
   const wrapperRef = useRef(null);
