@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useScreenWidth } from "./useScreenWidth";
 
 export function useReveal() {
   const [visibleProject, setVisibleProject] = useState(null);
   const refs = useRef([]);
 
   useEffect(() => {
-    if (window.innerWidth >= 768) return;
+    if (useScreenWidth >= 768) return;
     
     const obs = new IntersectionObserver(
       (entries) => {
