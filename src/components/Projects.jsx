@@ -61,7 +61,7 @@ export function Projects() {
 
         <div className="mt-14 flex flex-col gap-14">
           <div className={`flex flex-col gap-5`}>
-            <div className="flex xl:flex-col gap-5 xl:gap-0 overflow-x-auto duration-500 scrollBar xl:snap-x xl:snap-mandatory">
+            <div className="flex xl:flex-col gap-5 xl:gap-0 overflow-x-auto duration-500 scrollBar snap-x snap-mandatory xl:snap-none">
               {PROJECTS.map((project, index) => (
                 <div
                   key={project.title}
